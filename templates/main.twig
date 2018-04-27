@@ -1,0 +1,13 @@
+{% extends "Page.twig" %}
+
+{% block main %}
+  <ul class="flex">
+  {% for key, type in overview %}
+    <li class="card">
+      <h4>{{type.title}}</h4>
+      <p>{{type.value}}</p>
+      <p>{{type.total}} {{type.observationType}}</p>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}
