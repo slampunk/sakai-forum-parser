@@ -17,14 +17,51 @@ class Referencer {
         $context['old_code'] = Settings::linkGet('code', '');
 
         $p = $CFG->dbprefix;
-        if ( $app['tsugi']->user->instructor ) {
+        $context['overview'] = array(
+          array(
+            'title' => 'Most references by student',
+            'class' => 'overview reference student',
+            'value' => 'Sue student',
+            'observationType' => 'references',
+            'total' => 10
+          ),
+          array(
+            'title' => 'Most references by group',
+            'class' => 'overview reference group',
+            'value' => 'Group 1',
+            'observationType' => 'references',
+            'total' => 25
+          ),
+          array(
+            'title' => 'Most vocal student',
+            'class' => 'overview reference vocalStudent',
+            'value' => 'Ann Hecke',
+            'observationType' => 'messages',
+            'total' => 30
+          ),
+          array(
+            'title' => 'Most vocal group',
+            'class' => 'overview reference vocalGroup',
+            'value' => 'Group 5',
+            'observationType' => 'messages',
+            'total' => 80
+          ),
+          array(
+            'title' => 'Longest group exchange',
+            'class' => 'overview reference longestVersus',
+            'value' => 'Group 5 vs Group 1',
+            'observationType' => 'exchanges',
+            'total' => 150
+          ),
+        );
+/*        if ( $app['tsugi']->user->instructor ) {
             $rows = $PDOX->allRowsDie("SELECT user_id FROM {$p}referenceuser
                     WHERE link_id = :LI ORDER BY user_id ASC",
                     array(':LI' => $app['tsugi']->link->id)
             );
             $context['rows'] = $rows;
-        }
-        return $app['twig']->render('Attend.twig', $context);
+        }*/
+        return $app['twig']->render('main.twig', $context);
     }
 
     public function post(Request $request, Application $app)
